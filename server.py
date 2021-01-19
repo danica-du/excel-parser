@@ -17,7 +17,7 @@ def done():
     if output_name == '0':
         output_name = file_name
 
-    parser = ExcelParser(file_name, output_name, int(threshold))
+    parser = ExcelParser(str(file_name), output_name, int(threshold))
     parser.main()
 
     return render_template('done.html')
