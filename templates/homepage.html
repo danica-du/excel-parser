@@ -1,0 +1,69 @@
+<!doctype html>
+
+    <meta charset=utf-8> 
+    <head>
+        <script type="text/javascript">
+            function saveFilename() {
+                var file_name = document.getElementById('thefile');
+            }
+            var validate = function(form) {
+                var errors = [];
+                var thresh = form.threshold.value;
+                var out_name = form.output_name.value;
+                
+                if (thresh == '') {
+                    errors.push('Remember to enter the number of rows per page.')
+                    form.thresh.focus();
+                }
+                // else if (parseInt(thresh) <= 0) {
+                //     errors.push('The number of rows per page should be greater than 0.');
+                // }
+                if (out_name == '') {
+                    errors.push('Remember to enter a name for the final file.');
+                    form.out_name.focus();
+                }
+                else if (out_name.substr(out_name.length - 5) != '.xlsx' && out_name != '0') {
+                    errors.push('Make sure the name of the final file ends in ".xlsx"');
+                    form.out_name.focus();
+                }
+
+                if (errors.length) {
+                    alert(errors.join('\n'));
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <style>
+        h1 {
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            color: #fcefa2;
+            font-family: Georgia, serif;
+            margin: 30px;
+        }
+        body {
+            margin: 30px;
+            font-family: "Gill Sans", sans-serif;
+        }
+    </style>
+
+    <body>
+        <h1>Welcome!</h1>
+        <form action="/done" method="POST" onsubmit="return validate(this);">
+            Upload file: <input type="file" name = "file_name" id="thefile" onchange="saveFilename()"/><br>
+            (Make sure the .xlsx file is in the same folder as the downloaded program.) <br>
+            <br>
+            Number of rows per page: <input type="text" name="threshold" id="rows" size="4"/><br>
+            Enter 0 if you don't need to separate by page. <br>
+            (The first page would be one row fewer because of the column titles.) <br>
+            <br>
+            Name of final file (ending in .xlsx): <input type="text" name="output_name" id="out_name"/> <br>
+            Enter 0 if you want the final file to replace your uploaded file. <br>
+            <br>
+            <input type="submit" name="form" value="Submit" onclick="validate()"/> <br>
+            There might be a nasty error if any of the three elements above are left blank!
+        </form>
+    </body>
+
+</html>

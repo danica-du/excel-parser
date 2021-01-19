@@ -1,0 +1,29 @@
+<!doctype html>
+
+    <title>Test</title> 
+    <meta charset=utf-8> 
+    <head>
+    </head>
+    <style>
+        h1 {
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            color: #fcefa2;
+            font-family: Georgia, serif;
+            margin: 30px;
+        }
+        body {
+            margin: 30px;
+            font-family: Georgia, serif;
+        }
+    </style>
+    <body>
+        <h1>...and done!</h1>
+        <p>The final file should now be in your downloaded folder.</p>
+        <br>
+        <form action="{{url_for('index')}}" method="GET">
+            <button>Back to Home</button>
+        </form>
+
+    </body>
+
+</html>
