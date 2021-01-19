@@ -1,8 +1,10 @@
 import openpyxl
 from pathlib import Path
+import getpass
+
+desktop_path = '/home/' + getpass.getuser() + '/Desktop/'
 
 class ExcelParser(object):
-
     def __init__(self, file_name, output_name, threshold):
         self.file_name = file_name
         self.output_name = output_name
@@ -14,10 +16,10 @@ class ExcelParser(object):
         Saves input Excel file as wb_obj and sheet to be read later on.
         """
         # Setting the path to the xlsx file:
-        xlsx_file = Path(self.file_name)
+        # xlsx_file = Path(self.file_name)
 
         # read the excel file
-        wb_obj = openpyxl.load_workbook(xlsx_file)
+        wb_obj = openpyxl.load_workbook(desktop_path + self.file_name)
 
         # read the active sheet from the excel file
         sheet = wb_obj.active
@@ -202,9 +204,10 @@ class ExcelParser(object):
                     curr_row += 1
 
         # save excel file
-        wb_obj.save(self.output_name)
+        wb_obj.save(desktop_path + self.output_name)
 
     def main(self):
         wb_obj, sheet = self.load_file()
         data = self.build_data(sheet)
         self.output_file(wb_obj, sheet, data)
+        print(self.file_name)
