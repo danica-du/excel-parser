@@ -1,5 +1,5 @@
 ## Usage
-- Download this repository locally. Make sure the Excel files you want to use are in the same folder.
+- Download this repository locally. Make sure the Excel files you want to use are located in the Desktop folder.
 - `python server.py`
 - Go to http://0.0.0.0:3000/ in your browser.
 
